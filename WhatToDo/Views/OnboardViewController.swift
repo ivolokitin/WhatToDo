@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  OnboardViewController.swift
 //  WhatToDo
 //
 //  Created by Ivan Volokitin on 30.04.2020.
@@ -8,13 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class OnboardViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        view.backgroundColor = .white
     }
-
-
+    
 }
-
