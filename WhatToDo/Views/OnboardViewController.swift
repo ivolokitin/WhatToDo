@@ -63,7 +63,7 @@ class OnboardViewController: UIViewController {
     
     let hintLabel: UILabel = {
         let label = UILabel()
-        label.text = "Tap plus button\n or shake your iPhone"
+        label.text = "Tap plus button\nor shake your iPhone"
         label.numberOfLines = 0
         label.textColor = .systemGray5
         label.font = UIFont(name: "HelveticaNeue-Bold", size: 14)

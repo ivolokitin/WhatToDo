@@ -103,7 +103,7 @@ class UserListViewController: UIViewController {
     // MARK:- Handlers
 
     @objc func plusButton_touchedUpInside() {
-        
+        navigationController?.pushViewController(AddItemViewController(), animated: true)
     }
 }
 
