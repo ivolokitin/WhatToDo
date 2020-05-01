@@ -43,6 +43,11 @@ class UserListViewController: UIViewController {
 
     // MARK:- Lifecycle
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        backgroundHintLabel.isHidden = userItems.count == 0 ? false : true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,7 +57,6 @@ class UserListViewController: UIViewController {
         setupViews()
         setupTableView()
         
-        backgroundHintLabel.isHidden = userItems.count == 0 ? false : true
     }
         
     // MARK:- Setup Navigation
@@ -103,7 +107,17 @@ class UserListViewController: UIViewController {
     // MARK:- Handlers
 
     @objc func plusButton_touchedUpInside() {
-        navigationController?.pushViewController(AddItemViewController(), animated: true)
+        let addItemVC = AddItemViewController()
+        addItemVC.delegate = self
+        navigationController?.pushViewController(addItemVC, animated: true)
+    }
+}
+
+extension UserListViewController: AddItemDelegate {
+    func addItem(item: Item) {
+        navigationController?.popViewController(animated: true)
+        userItems.append(item)
+        tableView.reloadData()
     }
 }
 

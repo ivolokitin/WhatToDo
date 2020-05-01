@@ -8,13 +8,18 @@
 
 import UIKit
 
+protocol AddItemDelegate {
+    func addItem(item: Item)
+}
+
 class AddItemViewController: UIViewController {
 
     // MARK:- Properties
+    var delegate: AddItemDelegate?
     
     // MARK:- Views
     
-    lazy var nameTextField: UITextField = {
+    let nameTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "What to do"
         textField.font = UIFont(name: "HelveticaNeue-Medium", size: 40)
@@ -80,6 +85,8 @@ class AddItemViewController: UIViewController {
     // MARK:- Handlers
     
     @objc func okButton_touchedUpInside() {
-        
+        guard let name = nameTextField.text, nameTextField.hasText else { return }
+        let item = Item(name: name)
+        delegate?.addItem(item: item)
     }
 }
