@@ -117,7 +117,7 @@ class ItemViewController: UIViewController {
     }
     
     @objc func doItButton_touchedUpInside() {
-        
+        navigationController?.pushViewController(UserListViewController(), animated: true)
     }
     
     @objc func slideToLeftWithGestureRecognizer() {
