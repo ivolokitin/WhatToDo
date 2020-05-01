@@ -32,7 +32,7 @@ class ItemViewController: UIViewController {
         button.titleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: 20)
         button.backgroundColor = .darkGray
         button.layer.cornerRadius = 35
-        button.contentEdgeInsets = UIEdgeInsets(top: -4, left: 0, bottom: 0, right: 0)
+        button.contentEdgeInsets = UIEdgeInsets(top: -3, left: 0, bottom: 0, right: 0)
         button.addTarget(self, action: #selector(nextButton_touchedUpInside), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -45,7 +45,7 @@ class ItemViewController: UIViewController {
         button.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
         button.backgroundColor = .white
         button.layer.cornerRadius = 35
-        button.contentEdgeInsets = UIEdgeInsets(top: -4, left: 0, bottom: 0, right: 0)
+        button.contentEdgeInsets = UIEdgeInsets(top: -3, left: 0, bottom: 0, right: 0)
         button.addTarget(self, action: #selector(doItButton_touchedUpInside), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -65,6 +65,10 @@ class ItemViewController: UIViewController {
         view.backgroundColor = .systemPink
         setupNavigation()
         setupViews()
+        
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(slideToLeftWithGestureRecognizer))
+        swipeGesture.direction = .left
+        view.addGestureRecognizer(swipeGesture)
     }
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
@@ -114,6 +118,10 @@ class ItemViewController: UIViewController {
     
     @objc func doItButton_touchedUpInside() {
         
+    }
+    
+    @objc func slideToLeftWithGestureRecognizer() {
+        generateItem()
     }
     
     func generateItem() {
