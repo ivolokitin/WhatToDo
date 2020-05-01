@@ -77,7 +77,7 @@ class AddItemViewController: UIViewController {
         nameTextField.widthAnchor.constraint(equalToConstant: 300).isActive = true
         
         okButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        okButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -150).isActive = true
+        okButton.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 150).isActive = true
         okButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         okButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
