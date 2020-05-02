@@ -7,15 +7,17 @@
 //
 
 import UIKit
+import CoreData
 
 protocol AddItemDelegate {
-    func addItem(item: Item)
+    func addItem(userItem: UserItem)
 }
 
 class AddItemViewController: UIViewController {
 
     // MARK:- Properties
     var delegate: AddItemDelegate?
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     // MARK:- Views
     
@@ -86,7 +88,9 @@ class AddItemViewController: UIViewController {
     
     @objc func okButton_touchedUpInside() {
         guard let name = nameTextField.text, nameTextField.hasText else { return }
-        let item = Item(name: name)
-        delegate?.addItem(item: item)
+        //let item = Item(name: name)
+        let userItem = UserItem(context: context)
+        userItem.name = name
+        delegate?.addItem(userItem: userItem)
     }
 }

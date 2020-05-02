@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import CoreData
 
 class UserListViewController: UIViewController {
 
     // MARK:- Properties
-    var userItems: [Item] = [Item]()
+    //var userItems: [Item] = [Item]()
+    
+    var userItemsList = [UserItem]()
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     let reuseIdentifier = "UserListReuseIdentifier"
     
     var tableView = UITableView()
@@ -45,7 +50,7 @@ class UserListViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        backgroundHintLabel.isHidden = userItems.count == 0 ? false : true
+        backgroundHintLabel.isHidden = userItemsList.count == 0 ? false : true
     }
     
     override func viewDidLoad() {
@@ -53,6 +58,7 @@ class UserListViewController: UIViewController {
         
         view.backgroundColor = .systemGray5
         
+        loadData()
         setupNavigation()
         setupViews()
         setupTableView()
@@ -111,27 +117,58 @@ class UserListViewController: UIViewController {
         addItemVC.delegate = self
         navigationController?.pushViewController(addItemVC, animated: true)
     }
+
+    // MARK:- Core Data
+    
+    func saveData() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context")
+        }
+        
+        tableView.reloadData()
+    }
+    
+    func loadData(with request: NSFetchRequest<UserItem> = UserItem.fetchRequest()) {
+        do {
+            userItemsList = try context.fetch(request)
+        } catch {
+            print("Error fetching data from context")
+        }
+        
+        tableView.reloadData()
+    }
 }
 
 extension UserListViewController: AddItemDelegate {
+    
+    func addItem(userItem: UserItem) {
+        navigationController?.popViewController(animated: true)
+        userItemsList.append(userItem)
+        saveData()
+    }
+    
+    /*
     func addItem(item: Item) {
         navigationController?.popViewController(animated: true)
         userItems.append(item)
         tableView.reloadData()
     }
+    */
 }
 
 extension UserListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userItems.count
+        return userItemsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? CustomTableViewCell else {
             fatalError("Unable to create cell")
         }
-        cell.nameLabel.text = userItems[indexPath.row].name
+        cell.nameLabel.text = userItemsList[indexPath.row].name
         return cell
     }
     
