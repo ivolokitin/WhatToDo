@@ -12,6 +12,7 @@ class ItemViewController: UIViewController {
 
     // MARK:- Properties
     let items: [Item] = Item.itemList()
+    var currentItem: Item?
     
     // MARK:- Views
     
@@ -23,6 +24,21 @@ class ItemViewController: UIViewController {
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    let bookmarkButton: UIButton = {
+        let button = UIButton()
+        //button.imageView?.image = UIImage(systemName: "bookmark")
+        let image = UIImage(systemName: "bookmark")?.withRenderingMode(.alwaysTemplate)
+        image?.withTintColor(.white)
+        button.setImage(image, for: .normal)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(bookmarkButton_touchedUpInside), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     let nextButton: UIButton = {
@@ -90,6 +106,7 @@ class ItemViewController: UIViewController {
     }
     fileprivate func addViews() {
         view.addSubview(itemLabel)
+        view.addSubview(bookmarkButton)
         view.addSubview(doItButton)
         view.addSubview(nextButton)
     }
@@ -98,6 +115,11 @@ class ItemViewController: UIViewController {
         itemLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 50).isActive = true
         itemLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -50).isActive = true
         itemLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
+        
+        bookmarkButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+        bookmarkButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30).isActive = true
+        bookmarkButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        bookmarkButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         doItButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
         doItButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -120).isActive = true
@@ -116,6 +138,11 @@ class ItemViewController: UIViewController {
         generateItem()
     }
     
+    @objc func bookmarkButton_touchedUpInside() {
+        currentItem?.isFavorite.toggle()
+        bookmarkButton.setImage(currentItem!.isFavorite ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark"), for: .normal)
+    }
+    
     @objc func doItButton_touchedUpInside() {
         navigationController?.pushViewController(UserListViewController(), animated: true)
     }
@@ -125,7 +152,8 @@ class ItemViewController: UIViewController {
     }
     
     func generateItem() {
-        let item = items.filter { $0.name != itemLabel.text }.randomElement()
-        itemLabel.text = item?.name
+        currentItem = items.filter { $0.name != itemLabel.text }.randomElement()
+        itemLabel.text = currentItem?.name
+        bookmarkButton.setImage(currentItem!.isFavorite ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark"), for: .normal)
     }
 }

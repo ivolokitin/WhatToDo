@@ -11,6 +11,7 @@ import Foundation
 class Item {
     
     var name: String
+    var isFavorite: Bool = false
     
     init(name: String) {
         self.name = name
