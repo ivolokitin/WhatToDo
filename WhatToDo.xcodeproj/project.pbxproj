@@ -10,6 +10,7 @@
 		4005844F245B4FFC00A2FBD4 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4005844E245B4FFC00A2FBD4 /* ItemViewController.swift */; };
 		4077B894245C367900B95986 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4077B893245C367900B95986 /* UserListViewController.swift */; };
 		4077B896245C68E600B95986 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4077B895245C68E600B95986 /* AddItemViewController.swift */; };
+		408B275E245F076700EAB1A4 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408B275D245F076700EAB1A4 /* BottomSheetViewController.swift */; };
 		40A48EEB245B362C00869EC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A48EEA245B362C00869EC9 /* AppDelegate.swift */; };
 		40A48EED245B362C00869EC9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A48EEC245B362C00869EC9 /* SceneDelegate.swift */; };
 		40A48EF5245B362D00869EC9 /* WhatToDo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 40A48EF3245B362C00869EC9 /* WhatToDo.xcdatamodeld */; };
@@ -23,6 +24,7 @@
 		4005844E245B4FFC00A2FBD4 /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		4077B893245C367900B95986 /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		4077B895245C68E600B95986 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
+		408B275D245F076700EAB1A4 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		40A48EE7245B362C00869EC9 /* WhatToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40A48EEA245B362C00869EC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40A48EEC245B362C00869EC9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 			children = (
 				40A48F01245B371300869EC9 /* OnboardViewController.swift */,
 				4005844E245B4FFC00A2FBD4 /* ItemViewController.swift */,
+				408B275D245F076700EAB1A4 /* BottomSheetViewController.swift */,
 				4077B893245C367900B95986 /* UserListViewController.swift */,
 				4077B895245C68E600B95986 /* AddItemViewController.swift */,
 			);
@@ -166,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				40A48F07245B39AE00869EC9 /* Item.swift in Sources */,
+				408B275E245F076700EAB1A4 /* BottomSheetViewController.swift in Sources */,
 				4077B894245C367900B95986 /* UserListViewController.swift in Sources */,
 				40A48EEB245B362C00869EC9 /* AppDelegate.swift in Sources */,
 				40A48EED245B362C00869EC9 /* SceneDelegate.swift in Sources */,

@@ -75,6 +75,11 @@ class ItemViewController: UIViewController {
         generateItem()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        addBottomSheetView()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -99,6 +104,19 @@ class ItemViewController: UIViewController {
     }
     
     // MARK:- Setup Views
+    
+    func addBottomSheetView() {
+        let bottomSheetVC = BottomSheetViewController()
+        
+        self.addChild(bottomSheetVC)
+        self.view.addSubview(bottomSheetVC.view)
+        bottomSheetVC.didMove(toParent: self)
+        
+        let width = view.frame.width
+        let height = view.frame.height
+        
+        bottomSheetVC.view.frame = CGRect(x: 0, y: view.frame.maxY, width: width, height: height)
+    }
     
     fileprivate func setupViews() {
         addViews()
