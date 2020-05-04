@@ -186,7 +186,7 @@ class ItemViewController: UIViewController {
     
     @objc func shareButton_touchedUpInside() {
         if let item = currentItem {
-            let vc = UIActivityViewController(activityItems: [item], applicationActivities: [])
+            let vc = UIActivityViewController(activityItems: [item.name], applicationActivities: [])
             present(vc, animated: true)
         }
     }
