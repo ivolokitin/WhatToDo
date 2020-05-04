@@ -139,6 +139,10 @@ class UserListViewController: UIViewController {
         
         tableView.reloadData()
     }
+    
+    func deleteData(object: UserItem) {
+        context.delete(object)
+    }
 }
 
 extension UserListViewController: AddItemDelegate {
@@ -148,14 +152,6 @@ extension UserListViewController: AddItemDelegate {
         userItemsList.append(userItem)
         saveData()
     }
-    
-    /*
-    func addItem(item: Item) {
-        navigationController?.popViewController(animated: true)
-        userItems.append(item)
-        tableView.reloadData()
-    }
-    */
 }
 
 extension UserListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -178,6 +174,24 @@ extension UserListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 800
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { (action, view, boolValue) in
+            
+        }
+        editAction.image = UIImage(systemName: "pencil.circle")
+        editAction.backgroundColor = .systemYellow
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, boolValue) in
+            self.deleteData(object: self.userItemsList[indexPath.row])
+            self.userItemsList.remove(at: indexPath.row)
+            self.saveData()
+            self.loadData()
+        }
+        deleteAction.image = UIImage(systemName: "trash.circle")
+        deleteAction.backgroundColor = .systemYellow
+        let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+        return swipeActions
     }
 }
 
