@@ -28,7 +28,6 @@ class ItemViewController: UIViewController {
     
     let bookmarkButton: UIButton = {
         let button = UIButton()
-        //button.imageView?.image = UIImage(systemName: "bookmark")
         let image = UIImage(systemName: "bookmark")?.withRenderingMode(.alwaysTemplate)
         image?.withTintColor(.white)
         button.setImage(image, for: .normal)
@@ -40,7 +39,21 @@ class ItemViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
+    let shareButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(systemName: "arrowshape.turn.up.right")?.withRenderingMode(.alwaysTemplate)
+        image?.withTintColor(.white)
+        button.setImage(image, for: .normal)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(shareButton_touchedUpInside), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
     let nextButton: UIButton = {
         let button = UIButton()
         button.setTitle("Next", for: .normal)
@@ -128,6 +141,7 @@ class ItemViewController: UIViewController {
     fileprivate func addViews() {
         view.addSubview(itemLabel)
         view.addSubview(bookmarkButton)
+        view.addSubview(shareButton)
         view.addSubview(doItButton)
         view.addSubview(nextButton)
     }
@@ -151,6 +165,12 @@ class ItemViewController: UIViewController {
         nextButton.bottomAnchor.constraint(equalTo: doItButton.topAnchor, constant: -20).isActive = true
         nextButton.widthAnchor.constraint(equalToConstant: 70).isActive = true
         nextButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        
+        shareButton.bottomAnchor.constraint(equalTo: doItButton.bottomAnchor, constant: -25).isActive = true
+        shareButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: -view.frame.width / 4).isActive = true
+        shareButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        shareButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+
     }
     
     // MARK:- Handlers
@@ -162,6 +182,13 @@ class ItemViewController: UIViewController {
     @objc func bookmarkButton_touchedUpInside() {
         currentItem?.isFavorite.toggle()
         bookmarkButton.setImage(currentItem!.isFavorite ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark"), for: .normal)
+    }
+    
+    @objc func shareButton_touchedUpInside() {
+        if let item = currentItem {
+            let vc = UIActivityViewController(activityItems: [item], applicationActivities: [])
+            present(vc, animated: true)
+        }
     }
     
     @objc func doItButton_touchedUpInside() {
