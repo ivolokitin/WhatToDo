@@ -72,12 +72,15 @@ class ItemViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        addBottomSheetView()
+
         generateItem()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        addBottomSheetView()
+        
     }
     
     override func viewDidLoad() {

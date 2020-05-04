@@ -12,9 +12,8 @@ class BottomSheetViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        let yPosition = UIScreen.main.bounds.height - 130
-        view.frame = CGRect(x: 0, y: yPosition, width: view.frame.width, height: view.frame.height)
+
+        view.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - 130, width: view.frame.width, height: view.frame.height)
     }
     
     override func viewDidLoad() {
