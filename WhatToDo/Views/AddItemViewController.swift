@@ -25,11 +25,24 @@ class AddItemViewController: UIViewController {
         let textField = UITextField()
         textField.placeholder = "What to do"
         textField.font = UIFont(name: "HelveticaNeue-Medium", size: 40)
-        textField.borderStyle = UITextField.BorderStyle.roundedRect
+        //textField.borderStyle = UITextField.BorderStyle.roundedRect
+        textField.borderStyle = .none
+        
         // textField.autocorrectionType = UITextAutocorrectionType.no
         // textField.keyboardType = UIKeyboardType.default
         // textField.returnKeyType = UIReturnKeyType.done
         // textField.clearButtonMode = UITextField.ViewMode.whileEditing
+
+        textField.frame.size.width = 300
+        textField.frame.size.height = 50
+        
+        let bottomLine = CALayer()
+        
+        bottomLine.frame = CGRect(x: 0, y: textField.frame.height - 2, width: textField.frame.width, height: 2)
+        bottomLine.backgroundColor = UIColor.systemOrange.cgColor
+        bottomLine.masksToBounds = true
+        textField.layer.addSublayer(bottomLine)
+
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
