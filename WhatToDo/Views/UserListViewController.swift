@@ -84,6 +84,7 @@ class UserListViewController: UIViewController, UISearchBarDelegate {
         if searchText.isEmpty {
             loadData()
         } else {
+            loadData()
             userItemsList = userItemsList.filter {
                 $0.name?.range(of: searchText, options: .caseInsensitive) != nil
             }
