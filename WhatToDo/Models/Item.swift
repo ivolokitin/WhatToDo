@@ -10,6 +10,7 @@ import Foundation
 
 class Item {
     
+    //var uuid: UUID = UUID()
     var name: String
     var isFavorite: Bool = false
     

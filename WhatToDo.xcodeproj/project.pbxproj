@@ -18,6 +18,7 @@
 		40A48EFA245B362D00869EC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40A48EF8245B362D00869EC9 /* LaunchScreen.storyboard */; };
 		40A48F02245B371300869EC9 /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A48F01245B371300869EC9 /* OnboardViewController.swift */; };
 		40A48F07245B39AE00869EC9 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A48F06245B39AE00869EC9 /* Item.swift */; };
+		40E6DA3724619E58004276CD /* EditItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E6DA3624619E58004276CD /* EditItemViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		40A48EFB245B362D00869EC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40A48F01245B371300869EC9 /* OnboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
 		40A48F06245B39AE00869EC9 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		40E6DA3624619E58004276CD /* EditItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				408B275D245F076700EAB1A4 /* BottomSheetViewController.swift */,
 				4077B893245C367900B95986 /* UserListViewController.swift */,
 				4077B895245C68E600B95986 /* AddItemViewController.swift */,
+				40E6DA3624619E58004276CD /* EditItemViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 				40A48EED245B362C00869EC9 /* SceneDelegate.swift in Sources */,
 				40A48F02245B371300869EC9 /* OnboardViewController.swift in Sources */,
 				4077B896245C68E600B95986 /* AddItemViewController.swift in Sources */,
+				40E6DA3724619E58004276CD /* EditItemViewController.swift in Sources */,
 				40A48EF5245B362D00869EC9 /* WhatToDo.xcdatamodeld in Sources */,
 				4005844F245B4FFC00A2FBD4 /* ItemViewController.swift in Sources */,
 			);
