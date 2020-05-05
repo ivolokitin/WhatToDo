@@ -9,12 +9,14 @@
 import UIKit
 import CoreData
 
-class UserListViewController: UIViewController {
+class UserListViewController: UIViewController, UISearchBarDelegate {
 
     // MARK:- Properties
     //var userItems: [Item] = [Item]()
     
     var userItemsList = [UserItem]()
+    var filteredData = [UserItem]()
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     let reuseIdentifier = "UserListReuseIdentifier"
@@ -45,6 +47,16 @@ class UserListViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    let searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.showsCancelButton = false
+        searchBar.searchBarStyle = .minimal
+        searchBar.placeholder = "Search"
+        searchBar.sizeToFit()
+        searchBar.backgroundColor = .systemYellow
+        return searchBar
+    }()
 
     // MARK:- Lifecycle
 
@@ -63,8 +75,24 @@ class UserListViewController: UIViewController {
         setupViews()
         setupTableView()
         
+        searchBar.delegate = self
     }
+       
+    // MARK:- Search Bar
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
+        if searchText.isEmpty {
+            loadData()
+        } else {
+            userItemsList = userItemsList.filter {
+                $0.name?.range(of: searchText, options: .caseInsensitive) != nil
+            }
+        }
+
+        tableView.reloadData()
+        //print(searchText)
+    }
+    
     // MARK:- Setup Navigation
         
     fileprivate func setupNavigation() {
@@ -93,7 +121,6 @@ class UserListViewController: UIViewController {
     }
     
     fileprivate func setupTableView() {
-        //tableView.frame = self.view.frame
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = 485.0
         tableView.rowHeight = UITableView.automaticDimension
@@ -107,6 +134,8 @@ class UserListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .systemYellow
+        
+        tableView.tableHeaderView = searchBar
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
     }
     
@@ -213,7 +242,6 @@ class CustomTableViewCell: UITableViewCell {
         rearView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor, constant: -10).isActive = true
         rearView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor, constant: 10).isActive = true
         rearView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor, constant: 5).isActive = true
-
 
         rearView.addSubview(nameLabel)
 
