@@ -50,7 +50,7 @@ class UserListViewController: UIViewController, UISearchBarDelegate {
     
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
-        searchBar.showsCancelButton = false
+        searchBar.showsCancelButton = true
         searchBar.searchBarStyle = .minimal
         searchBar.placeholder = "Search"
         searchBar.sizeToFit()
