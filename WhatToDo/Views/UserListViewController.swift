@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class UserListViewController: UIViewController, UISearchBarDelegate {
+class UserListViewController: UIViewController {
 
     // MARK:- Properties
     //var userItems: [Item] = [Item]()
@@ -77,23 +77,7 @@ class UserListViewController: UIViewController, UISearchBarDelegate {
         
         searchBar.delegate = self
     }
-       
-    // MARK:- Search Bar
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        if searchText.isEmpty {
-            loadData()
-        } else {
-            loadData()
-            userItemsList = userItemsList.filter {
-                $0.name?.range(of: searchText, options: .caseInsensitive) != nil
-            }
-        }
-
-        tableView.reloadData()
-        //print(searchText)
-    }
-    
+           
     // MARK:- Setup Navigation
         
     fileprivate func setupNavigation() {
@@ -191,6 +175,25 @@ extension UserListViewController: EditItemDelegate {
         userItemsList[index] = userItem
         saveData()
         loadData()
+    }
+}
+
+extension UserListViewController: UISearchBarDelegate {
+    
+    // MARK:- Search Bar
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchText.isEmpty {
+            loadData()
+        } else {
+            loadData()
+            userItemsList = userItemsList.filter {
+                $0.name?.range(of: searchText, options: .caseInsensitive) != nil
+            }
+        }
+
+        tableView.reloadData()
+        //print(searchText)
     }
 }
 
