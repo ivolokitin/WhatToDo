@@ -187,44 +187,10 @@ extension UserListViewController: AddItemDelegate {
 extension UserListViewController: EditItemDelegate {
     
     func editItem(userItem: UserItem, index: Int) {
-        //print(index)
         navigationController?.popViewController(animated: true)
-        
-        //deleteData(object: userItemsList[index])
-        //userItemsList.remove(at: index)
-        
         userItemsList[index] = userItem
         saveData()
         loadData()
-        
-        //print(userItemsList.map {$0.name})
-        //print(userItem.name)
-        //userItemsList[index] = userItem
-        //print(index)
-        //print(userItemsList.map {$0.name})
-        //print(userItem.name)
-
-        
-        //saveData()
-        //print(userItemsList.map {$0.name})
-        
-        //tableView.reloadData()
-        //userItemsList.removeLast()
-        //print(userItemsList.map {$0.name})
-        //print(userItem.name)
-
-        //tableView.reloadData()
-        //loadData()
-        
-        //userItemsList.remove(at: index)
-        //userItemsList.insert(userItem, at: index)
-        
-        
-        //saveData()
-        //deleteData(object: userItemsList[index])
-        
-        
-        //saveData()
     }
 }
 
@@ -257,7 +223,6 @@ extension UserListViewController: UITableViewDelegate, UITableViewDataSource {
             editItemVC.delegate = self
 
             editItemVC.index = indexPath.row
-            print(indexPath.row)
             editItemVC.userItem = self.userItemsList[indexPath.row]
             
             self.navigationController?.pushViewController(editItemVC, animated: true)

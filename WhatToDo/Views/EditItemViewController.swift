@@ -21,7 +21,6 @@ class EditItemViewController: UIViewController {
     var userItem: UserItem?
 
     var delegate: EditItemDelegate?
-    //let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     // MARK:- Views
     
@@ -111,12 +110,10 @@ class EditItemViewController: UIViewController {
     
     @objc func okButton_touchedUpInside() {
         guard let name = nameTextField.text, nameTextField.hasText else { return }
-        //let userItem = UserItem(context: context)
         
         if let userItem = userItem {
             userItem.name = name
             guard let index = index else { return }
-            print(index)
             delegate?.editItem(userItem: userItem, index: index)
         }
     }
