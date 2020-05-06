@@ -62,6 +62,11 @@ class AddItemViewController: UIViewController {
 
     // MARK:- Lifecycle
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        nameTextField.becomeFirstResponder()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         

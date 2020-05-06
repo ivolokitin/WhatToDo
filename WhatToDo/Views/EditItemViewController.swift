@@ -29,6 +29,7 @@ class EditItemViewController: UIViewController {
         let textField = UITextField()
         textField.placeholder = "What to do"
         textField.font = UIFont(name: "HelveticaNeue-Medium", size: 40)
+        
         textField.borderStyle = .none
         textField.frame.size.width = 300
         textField.frame.size.height = 50
@@ -59,6 +60,11 @@ class EditItemViewController: UIViewController {
 
     // MARK:- Lifecycle
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        nameTextField.becomeFirstResponder()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
