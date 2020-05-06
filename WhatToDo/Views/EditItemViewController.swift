@@ -82,6 +82,10 @@ class EditItemViewController: UIViewController {
     // MARK:- Setup Navigation
         
     fileprivate func setupNavigation() {
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.tintColor = .systemOrange
     }
     
     // MARK:- Setup Views

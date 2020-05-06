@@ -63,6 +63,7 @@ class UserListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         backgroundHintLabel.isHidden = userItemsList.count == 0 ? false : true
+        setupNavigation()
     }
     
     override func viewDidLoad() {
@@ -71,7 +72,6 @@ class UserListViewController: UIViewController {
         view.backgroundColor = .systemGray5
         
         loadData()
-        setupNavigation()
         setupViews()
         setupTableView()
         
@@ -81,6 +81,8 @@ class UserListViewController: UIViewController {
     // MARK:- Setup Navigation
         
     fileprivate func setupNavigation() {
+        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.barStyle = .default
     }
     
     // MARK:- Setup Views
