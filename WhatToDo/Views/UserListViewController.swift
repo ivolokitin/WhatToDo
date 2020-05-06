@@ -132,7 +132,7 @@ class UserListViewController: UIViewController {
     @objc func plusButton_touchedUpInside() {
         let addItemVC = AddItemViewController()
         addItemVC.delegate = self
-        navigationController?.pushViewController(addItemVC, animated: true)
+        navigationController?.pushViewController(addItemVC, animated: false)
     }
     
     @objc func tableView_tapped() {
@@ -245,7 +245,7 @@ extension UserListViewController: UITableViewDelegate, UITableViewDataSource {
             editItemVC.index = indexPath.row
             editItemVC.userItem = self.userItemsList[indexPath.row]
             
-            self.navigationController?.pushViewController(editItemVC, animated: true)
+            self.navigationController?.pushViewController(editItemVC, animated: false)
         }
         editAction.image = UIImage(systemName: "pencil.circle")
         editAction.backgroundColor = .systemYellow
