@@ -50,7 +50,7 @@ class UserListViewController: UIViewController {
     
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
-        searchBar.showsCancelButton = true
+        //searchBar.showsCancelButton = true
         searchBar.searchBarStyle = .minimal
         searchBar.placeholder = "Search"
         searchBar.sizeToFit()
@@ -121,6 +121,7 @@ class UserListViewController: UIViewController {
         tableView.backgroundColor = .systemYellow
         
         tableView.tableHeaderView = searchBar
+        tableView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tableView_tapped)))
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
     }
     
@@ -130,6 +131,10 @@ class UserListViewController: UIViewController {
         let addItemVC = AddItemViewController()
         addItemVC.delegate = self
         navigationController?.pushViewController(addItemVC, animated: true)
+    }
+    
+    @objc func tableView_tapped() {
+        searchBar.resignFirstResponder()
     }
 
     // MARK:- Core Data
@@ -185,8 +190,10 @@ extension UserListViewController: UISearchBarDelegate {
         
         if searchText.isEmpty {
             loadData()
+            searchBar.showsCancelButton = false
         } else {
             loadData()
+            searchBar.showsCancelButton = true
             userItemsList = userItemsList.filter {
                 $0.name?.range(of: searchText, options: .caseInsensitive) != nil
             }
@@ -194,6 +201,14 @@ extension UserListViewController: UISearchBarDelegate {
 
         tableView.reloadData()
         //print(searchText)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.showsCancelButton = false
+        // Remove focus from the search bar.
+        searchBar.endEditing(true)
+        loadData()
     }
 }
 
